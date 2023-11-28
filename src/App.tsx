@@ -1,24 +1,12 @@
-
-import React, { useState } from "react";
 import "./App.css";
-import ProductList from "./components/ProductList";
-import ProductForm from "./components/ProductForm";
+import Routers from "./routes";
 
-const App : React.FC = (() => {
-  const [isOpenForm, setIsOpenForm] = useState(false);
-  
-  const showForm = () => {
-    setIsOpenForm(!isOpenForm);
-  };
-
+function App() {
   return (
     <>
-    <ProductList showForm={showForm} />
-    <div>
-      {isOpenForm && <ProductForm showForm={showForm} />}
-    </div>
-  </>
+      <Routers/>
+    </>
   );
-})
- 
+}
+
 export default App;
