@@ -11,14 +11,12 @@ type Product = {
 }
 
 const ProductList = () => {
-
     const [products, setProducts] = useState<Product[]>([])
-
     const [activeUpdate, setActiveUpdate] = useState('')
     const [name, setName] = useState<string>('')
     const [price, setPrice] = useState<number>(0)
     const [description, setDescription] = useState<string>('')
-    const getProdcuts = ()=>{
+    const getProducts = ()=>{
         axios.get<Product[]>("http://localhost:3001/products")
         .then((response) => {
             setProducts(response.data)
@@ -26,7 +24,7 @@ const ProductList = () => {
         .catch((error) => console.log(error))
     }
     useEffect(() => {
-        getProdcuts()
+        getProducts()
     },[])
     return (
         <div className="container mt-2">
@@ -66,7 +64,7 @@ const ProductList = () => {
                                         name, price, desc: description
                                     })
                                     if(data.status ==200){
-                                        getProdcuts()
+                                        getProducts()
                                         setActiveUpdate('-2')
                                     }
                                  
@@ -82,7 +80,7 @@ const ProductList = () => {
                            <Button className="btn btn-danger" onClick={async function(){
                                     const response = await axios.delete("http://localhost:3001/products/" + items.id)
                                     if(response.status == 200){
-                                        getProdcuts()
+                                        getProducts()
                                     }
                                 }}>Delete</Button>
                             </td>

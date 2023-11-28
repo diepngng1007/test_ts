@@ -1,18 +1,20 @@
 import { useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 const AddProduct = () => {
     const [name, setName] = useState<string>('')
     const [price, setPrice] = useState<number>(0)
     const [description, setDescription] = useState<string>('')
-
+    const navigate = useNavigate()
     console.log(name)
     const submitForm = async () => {
         const api = await axios.post("http://localhost:3001/products", {
             name, price, desc: description
         })
         console.log(api.data)
+        navigate('/')
     }
     return (
         <div className='container'>
